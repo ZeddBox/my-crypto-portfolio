@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_111029) do
+ActiveRecord::Schema.define(version: 2021_01_13_142553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,26 @@ ActiveRecord::Schema.define(version: 2021_01_13_111029) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "portfolios", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "portfolio_id"
+    t.string "crypto"
+    t.float "number"
+    t.float "price"
+    t.datetime "purchasedate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["portfolio_id"], name: "index_purchases_on_portfolio_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,18 @@
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <%= label_tag 'Cryptocurrency' %>
+  <%= text_field_tag 'crypto', "Cryptocurrency Name", class:"form-control" %>
+
+  <%= label_tag 'Amount' %>
+  <%= text_field_tag 'number', "0.0", class:"form-control" %>
+
+  <%= label_tag 'Buying Price' %>
+  <%= text_field_tag 'price', "0.0", class:"form-control" %>
+
+  <%= button_tag(type: 'submit', :class => 'btn btn-primary btn-arrow create-btn', id: 'validForm') do %>
+    <span>Créer</span>
+  <% end %>
+
+<% end %>

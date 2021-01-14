@@ -1,37 +1,35 @@
 <div class="max-w-7xl mx-auto mt-16 text-center">
   <h1 class="mb-4 text-4xl font-black">Table of cryptocurrencies</h1>
-  <%= button_to 'Price Update', crypto_update_path, method: :post, class: "bg-green-400 hover:bg-green-500 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" %>
+  <%= button_to 'Price Update', crypto_update_path, method: :post, class: "bg-green-400 hover:bg-green-500 text-gray-200 font-bold py-2 px-4 rounded inline-flex items-center" %>
 </div>
 
-<div class="max-w-7xl mx-auto mt-12">
-<div>
-  <table class="table-auto">
-    <thead>
-      <tr>
-        <th></th>
-        <th scope="col">Rank</th>
-        <th scope="col">Crypto</th>
-        <th scope="col" class="text-center">Symbol</th>
-        <th scope="col">Slug</th>
-        <th scope="col" class="text-right pr-4">Price (€)</th>
-        <th scope="col">CMC #id</th>
-        <th scope="col">Last Update</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @currencies.order('rank ASC').each do |crypto| %>
-      <tr>
-        <td><img style="width:35px;" src=<%= crypto.logo %>></td>
-        <td><%= crypto.rank %></td>
-        <td><a href="<%= currency_path(crypto.slug) %>"><%= crypto.name %></a></td>
-        <td class="text-center"><%= crypto.currency_symbol %></td>      
-        <td><%= crypto.slug %></td>
-        <td class="text-right"><%= crypto.price.round(4) %></td>
-        <td><%= crypto.id_CMC %></td>
-        <td><%= crypto.updated_at.strftime('%H:%M:%S le %d.%m.%y') %></td>
-      </tr>
-    <% end%>
-</tbody>
-  </table>
-</div>
+<div class="mx-auto max-w-7xl flex w-8/12 mt-12">
+  <div>
+    <table class="shadow-lg bg-white">
+      <thead>
+        <tr>
+          <th class="bg-blue-100 border text-left px-2 py-4" ></th>
+          <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Crypto</th>
+          <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Symbol</th>
+          <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Price (€)</th>
+          <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Portfolio Amount</th>
+          <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Portfolio Total USD</th>
+          <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Last Update</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @currencies.order('rank ASC').each do |crypto| %>
+        <tr>
+          <td class="border px-2 py-4"><img style="width:35px;" src=<%= crypto.logo %>></td>
+          <td class="border px-2 py-4"><a href="<%= currency_path(crypto.slug) %>"><%= crypto.name %></a></td>
+          <td class="border px-2 py-4"><%= crypto.currency_symbol %></td>      
+          <td class="border px-2 py-4"><%= crypto.price.round(4) %></td>
+          <td class="border px-2 py-4"><%= @current_user.portfolio.crypto_amount(crypto.name) %></td>
+          <td class="border px-2 py-4"><%= @current_user.portfolio.crypto_total_price(crypto.name) %></td>
+          <td class="border px-2 py-4"><%= crypto.updated_at.strftime('%H:%M:%S le %d.%m.%y') %></td>
+        </tr>
+      <% end%>
+      </tbody>    
+    </table>
+  </div>
 </div>

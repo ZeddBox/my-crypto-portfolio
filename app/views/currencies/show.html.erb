@@ -1,24 +1,55 @@
-<div class="m-5">
-  <h1><%= @currency.name %></h1>
+<div class="mx-auto max-w-7xl flex w-8/12 my-8 flex items-stretch">
   <img class="img-thumbnail" src="<%= @currency.logo %>">
-  <table class="table my-5">
+  <h2 class="ml-6 text-4xl font-black self-center"><%= @currency.name %></h2>
+</div>
+
+<hr>
+
+<div class="mx-auto max-w-7xl flex w-8/12 mt-12">
+  <table class="shadow-lg bg-white">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Symbol</th>
-        <th scope="col">Max Supply</th>
-        <th scope="col">Price ($ USD)</th>
-        <th scope="col">Last Update</th>
+        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Name</th>
+        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Symbol</th>
+        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Max Supply</th>
+        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Price ($ USD)</th>
+        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Last Update</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><%= @currency.name %></td>
-        <td><%= @currency.currency_symbol %></td>
-        <td><%= @currency.max_supply %></td>
-        <td><%= @currency.price.round(4) %></td>
-        <td><%= @currency.updated_at.strftime('%H:%M:%S le %d.%m.%y') %></td>
+        <td class="border px-2 py-4"><%= @currency.name %></td>
+        <td class="border px-2 py-4"><%= @currency.currency_symbol %></td>
+        <td class="border px-2 py-4"><%= @currency.max_supply %></td>
+        <td class="border px-2 py-4"><%= @currency.price.round(4) %></td>
+        <td class="border px-2 py-4"><%= @currency.updated_at.strftime('%H:%M:%S le %d.%m.%y') %></td>
       </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<div class="mx-auto max-w-7xl flex w-8/12 my-6">
+  <h2 class="mb-4 text-2xl font-black">My Portfolio</h2>
+</div>
+
+<div class="mx-auto max-w-7xl flex w-8/12">
+
+  <table class="shadow-lg bg-white">
+    <thead>
+      <tr>
+        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Qty</th>
+        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">USD Value</th>
+        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border px-2 py-4"><%= @amount_purchased %></td>
+          <td class="border px-2 py-4"><%= @amount_purchased * @currency.price.round(4) %></td>
+            <td class="border px-2 py-4"><%= current_user.portfolio.crypto_percentage(@currency.name).round(2) %> %</td>
+          </tr>
     </tbody>
   </table>
 </div>
