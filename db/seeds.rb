@@ -6,6 +6,9 @@
 # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 # #   Character.create(name: 'Luke', movie: movies.first)
 
+User.find_by(email: "jul33anc@gmail.com").portfolio.destroy
+User.find_by(email: "jul33anc@gmail.com").destroy
+
 Currency.update_data(200)
 User.create(first_name:"Julien", last_name:"Anceau", email: "jul33anc@gmail.com", password: "123456")
 
