@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  autocomplete :currency, :name, :full => true
 
   def index 
     @purchases = current_user.portfolio.purchases
@@ -6,18 +7,27 @@ class PurchasesController < ApplicationController
 
   def new
     @currencies = Currency.all
+    @crypto = []
+    crypto = []
+    @currencies.all.each do |currency|
+      @crypto << currency.name
+      crypto << currency.name
+    end
+
     @purchases = current_user.portfolio.purchases
   end
 
   def create
     @currencies = Currency.all
-    crypto_name = []
+    @crypto = []
+    crypto = []
     @currencies.all.each do |currency|
-      crypto_name << currency.name
+      @crypto << currency.name
+      crypto << currency.name
     end
 
-    if crypto_name.include? params[:crypto]
-      @purchase = Purchase.new(user_id: current_user.id, portfolio_id: current_user.portfolio.id, crypto: params[:crypto], number: params[:number].to_f, price: params[:price].to_f, purchasedate: Time.now)
+    if @crypto.include? params[:crypto]
+      @purchase = Purchase.new(user_id: current_user.id, portfolio_id: current_user.portfolio.id, crypto: params[:crypto], number: params[:number].to_f, price: params[:price].to_f, purchasedate: params[:purchasedate].to_s + " " +params[:purchase_time].to_s)
       if @purchase.valid? == false 
         flash.now[:alert] = "Warning! Purchase not valid"
         render :new

@@ -1,18 +1,51 @@
-<%= form_tag url_for(action: 'create'), method: "post" do %>
+<div class="mt-10py-4 pl-3  sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <%= form_tag url_for(action: 'create'), method: "post" do %>
+        <div class="shadow overflow-hidden sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
 
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <%= label_tag 'Cryptocurrency' %>
-  <%= text_field_tag 'crypto', "Cryptocurrency Name", class:"form-control" %>
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <%= label_tag 'Amount' %>
-  <%= text_field_tag 'number', "0.0", class:"form-control" %>
+                <div class="col-span-6 sm:col-span-3">
+                  <%= label_tag 'cryptocurrency', "Cryptocurrency", class: "block text-sm font-medium text-gray-700" %>
+                  <%= text_field_tag 'crypto', nil, placeholder: "Search..", class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                </div>
 
-  <%= label_tag 'Buying Price' %>
-  <%= text_field_tag 'price', "0.0", class:"form-control" %>
+                  <div id= "search-data" class="form-search search-data" data-skills="<%= @crypto_name.to_json %>">
+                    <%= autocomplete_field_tag 'crypto', '', autocomplete_currency_name_purchases_path, class: "form-control search-input", placeholder: "Search.."%>
+                  </div> 
 
-  <%= button_tag(type: 'submit', :class => 'btn btn-primary btn-arrow create-btn', id: 'validForm') do %>
-    <span>Créer</span>
-  <% end %>
+                <div class="col-span-6 sm:col-span-3">
+                  <%= label_tag 'amount', "Amount", class: "block text-sm font-medium text-gray-700" %>
+                  <%= text_field_tag 'number', nil, placeholder: "0.00", class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                </div>
 
-<% end %>
+                <div class="col-span-6 sm:col-span-3">
+                  <%= label_tag 'buying_price', "Buying Price", class: "block text-sm font-medium text-gray-700" %>
+                  <%= text_field_tag 'price', nil, placeholder: "0.00", class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <%= label_tag 'purchase_date', "Purchase Date", class: "block text-sm font-medium text-gray-700" %>
+                  <%= date_field_tag :purchasedate, {:start_year => Time.now.year - 14, :end_year => 1900, :prompt => true, :order => [:day, :month, :year]}, class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <%= label_tag 'purchase_time', "Purchase Hour", class: "block text-sm font-medium text-gray-700" %>
+                  <%= time_field_tag :purchase_time, "12:00", class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                </div>
+
+                <%= button_tag(type: 'submit', :class => 'btn btn-primary btn-arrow create-btn', id: 'validForm') do %>
+                  <span>Créer</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

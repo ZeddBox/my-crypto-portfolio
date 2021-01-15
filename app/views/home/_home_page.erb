@@ -29,7 +29,7 @@
             <td class="border px-8 py-4"><a href="<%= currency_path(Currency.find_by("name": purchase.crypto).slug) %>"><%= purchase.crypto %></a></td>
             <td class="border px-8 py-4"><%= purchase.price.round(4) %></td>
             <td class="border px-8 py-4"><%= purchase.number %></td>
-            <td class="border px-8 py-4"><%= purchase.purchasedate.strftime('%H:%M:%S le %d.%m.%y') %></td>
+            <td class="border px-8 py-4"><%= purchase.purchasedate.strftime('%d.%m.%y at %H:%M:%S') %></td>
             <td class="border px-8 py-4"><%= (purchase.number * purchase.price).round(6) %></td>
           </tr>
         <% end%>

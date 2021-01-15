@@ -160,6 +160,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails3-jquery-autocomplete (1.0.15)
+      rails (>= 3.2)
     railties (6.0.3.4)
       actionpack (= 6.0.3.4)
       activesupport (= 6.0.3.4)
@@ -255,6 +257,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.3)
+  rails3-jquery-autocomplete
   sass-rails (>= 6)
   selenium-webdriver
   sidekiq (~> 6.1, >= 6.1.2)
