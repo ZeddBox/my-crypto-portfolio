@@ -1,46 +1,79 @@
-<div class="max-w-7xl mx-auto mt-16 text-center">
-  <h1 class="mt-6 mb-4 text-4xl font-bold text-gray-600">Your purchases (<%= current_user.portfolio.purchases.count%>)</h1>
+<div class="max-w-7xl mx-auto">
+  <div class="text-center my-12">
+    <h1 class="mt-6 mb-4 text-4xl font-bold text-gray-600">Your purchases (<%= current_user.portfolio.purchases.count%>)</h1>
 
-  <%= link_to new_purchase_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" do %>
-    <i class="fa fa-plus mr-2"></i><span> Add a purchase</span>
-  <% end %>
+    <%= link_to new_purchase_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" do %>
+      <i class="fa fa-plus mr-2"></i><span> Add a purchase</span>
+    <% end %>
+  </div>
 
-  <div class="mx-auto max-w-7xl flex w-9/12 mt-12">
-    <div>
-      <table class="shadow-lg bg-white">
-        <thead>
-          <tr>
-            <th class="bg-blue-100 border text-left px-8 py-4" ></th>
-            <th class="bg-blue-100 border text-left px-8 py-4" scope="col">Crypto</th>
-            <th class="bg-blue-100 border text-left px-8 py-4" scope="col">Price</th>
-            <th class="bg-blue-100 border text-left px-8 py-4" scope="col">Number</th>
-            <th class="bg-blue-100 border text-left px-8 py-4" scope="col">Purchase Date</th>
-            <th class="bg-blue-100 border text-left px-8 py-4" scope="col">Total Invested</th>
-            <th class="bg-blue-100 border text-left px-8 py-4" ></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @purchases.order('purchasedate').each do |purchase| %>
-          <tr>
-            <td class="border px-8 py-4"><img style="width:35px;" src=<%= Currency.find_by('name':purchase.crypto).logo%>></td>
-            <td class="border px-8 py-4"><a href="<%= currency_path(Currency.find_by("name": Purchase.last.crypto).slug) %>"><%= purchase.crypto %></a></td>
-            <td class="border px-8 py-4"><%= purchase.price.round(4) %></td>
-            <td class="border px-8 py-4"><%= purchase.number %></td>
-            <td class="border px-8 py-4"><%= purchase.purchasedate.strftime('%d.%m.%y at %H:%M:%S') %></td>
-            <td class="border px-8 py-4">$ <%= (purchase.number * purchase.price).round(6) %></td>
-            <td class="border px-8 py-4"><%= "Modify" %></td>
-          </tr>
-        <% end%>
-          <tr>
-            <td class="border px-8 py-4"></td>
-            <td class="border px-8 py-4"></td>
-            <td class="border px-8 py-4"></td>
-            <td class="border px-8 py-4"></td>
-            <td class="border px-8 py-4"></td>
-            <td class="border px-8 py-4">$ <%= current_user.portfolio.total_invested.round(4) %></td>
-          </tr>
-        </tbody>     
-      </table>
+  <div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Crypto
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Buying Price
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Amount
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Purchase Date
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Total Invested
+                </th>
+                <th scope="col" class="relative px-6 py-3">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <% @purchases.order('purchasedate').each do |purchase| %>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10">
+                        <img class="h-10 w-10 rounded-full" src="<%= Currency.find_by('name':purchase.crypto).logo%>" alt="">
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-blue-600">
+                          <a href="<%= currency_path(Currency.find_by("name": purchase.crypto).slug) %>"><%= purchase.crypto %></a>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                          <%= Currency.find_by("name": purchase.crypto).currency_symbol %>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900"><%= number_to_currency(purchase.price.round(4)) %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900"><%= number_with_delimiter(purchase.number.round(3), :delimiter => ',') %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= purchase.purchasedate.strftime('%d.%m.%y at %H:%M:%S') %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <%= number_to_currency((purchase.number * purchase.price).round(4)) %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="#" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 hover:text-green-900 mx-2">Edit</a>
+                    <a href="#" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 hover:text-red-900">Delete</a>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
