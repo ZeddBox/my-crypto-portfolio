@@ -12,8 +12,10 @@
           <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Crypto</th>
           <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Symbol</th>
           <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Price (€)</th>
+        <% if user_signed_in? %>
           <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Portfolio Amount</th>
           <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Portfolio Total USD</th>
+        <% end %>
           <th class="bg-blue-100 border text-left px-2 py-4"  scope="col">Last Update</th>
         </tr>
       </thead>
@@ -24,8 +26,10 @@
           <td class="border px-2 py-4"><a href="<%= currency_path(crypto.slug) %>"><%= crypto.name %></a></td>
           <td class="border px-2 py-4"><%= crypto.currency_symbol %></td>      
           <td class="border px-2 py-4"><%= crypto.price.round(4) %></td>
-          <td class="border px-2 py-4"><%= @current_user.portfolio.crypto_amount(crypto.name) %></td>
-          <td class="border px-2 py-4"><%= @current_user.portfolio.crypto_total_price(crypto.name) %></td>
+        <% if user_signed_in? %>
+          <td class="border px-2 py-4"><%= @current_user.portfolio.crypto_amount(crypto.name).round(5) %></td>
+          <td class="border px-2 py-4"><%= @current_user.portfolio.crypto_total_price(crypto.name).round(5) %></td>
+        <% end %>
           <td class="border px-2 py-4"><%= crypto.updated_at.strftime('%H:%M:%S le %d.%m.%y') %></td>
         </tr>
       <% end%>

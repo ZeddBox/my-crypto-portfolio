@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'static/landingpage'
   resources :currencies, path: 'crypto'
   post '/crypto/update', to: 'currencies#update'
   resources :purchases

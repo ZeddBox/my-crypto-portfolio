@@ -4,7 +4,9 @@ class CurrenciesController < ApplicationController
     @currencies = Currency.all.order('rank ASC')
     @current_user = current_user
 
-    @purchases = current_user.portfolio.purchases
+    if current_user
+      @purchases = current_user.portfolio.purchases
+    end
   end
 
   def show
