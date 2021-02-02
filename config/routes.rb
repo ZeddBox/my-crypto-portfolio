@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get '/presentation', to: 'static#_landingpage'
   resources :currencies, path: 'crypto'
   post '/crypto/update', to: 'currencies#update'
-  
+
   resources :purchases do 
-    get :autocomplete_currency_name, :on => :collection
+    get :autocomplete_currency_crypto, on: :collection
   end
 
     authenticate :user, lambda { |u| u.admin? } do

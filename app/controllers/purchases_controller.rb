@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  autocomplete :currency, :name, :full => true
+  autocomplete :currency, :crypto, :full => true
 
   def index 
     @purchases = current_user.portfolio.purchases
@@ -7,6 +7,7 @@ class PurchasesController < ApplicationController
 
   def new
     @currencies = Currency.all
+    @purchase = Purchase.new
     @crypto = []
     crypto = []
     @currencies.all.each do |currency|
