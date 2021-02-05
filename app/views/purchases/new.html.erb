@@ -6,21 +6,12 @@
           <div class="px-4 py-5 bg-white sm:p-6">
             <div class="grid grid-cols-6 gap-6">
 
-
                 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
                 <div class="col-span-6 sm:col-span-3">
                   <%= label_tag 'cryptocurrency', "Cryptocurrency", class: "block text-sm font-medium text-gray-700" %>
-                  <%= text_field_tag 'crypto', nil, placeholder: "Search..", class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                  <%= select_tag "crypto", options_from_collection_for_select(@currencies.order('name ASC'), "id", "name"), include_blank: "Search..", class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
                 </div>
- 
-                <div id= "search-data" class="form-search search-data" data-skills="<%= @crypto_name.to_json %>">
-                  <%= autocomplete_field_tag 'currency-name', '', autocomplete_currency_name_purchases_path, class: "form-control search-input", placeholder: "Test1"%>
-                </div>  
-
-                <div id= "search-data" class="form-search search-data" data-skills="<%= @crypto_name.to_json %>">
-                  <%= autocomplete_field_tag 'purchase-crypto', '', autocomplete_purchases_crypto_purchases_path, class: "form-control search-input", placeholder: "Test2"%>
-                </div>  
 
                 <div class="col-span-6 sm:col-span-3">
                   <%= label_tag 'amount', "Amount", class: "block text-sm font-medium text-gray-700" %>
@@ -52,9 +43,4 @@
       <% end %>
     </div>
   </div>
-
-
-  <%= form_for @purchase do |f| %>
-    <%= f.autocomplete_field :crypto, autocomplete_purchases_crypto_purchases_path %>
-  <% end %>
 </div>
