@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   post '/crypto/update', to: 'currencies#update'
 
   resources :purchases do 
-    get :autocomplete_currency_crypto, on: :collection
+    get :autocomplete_currency_name, on: :collection
+    get :autocomplete_purchases_crypto, on: :collection
   end
 
     authenticate :user, lambda { |u| u.admin? } do

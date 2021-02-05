@@ -63,4 +63,7 @@ gem 'font-awesome-sass', '~> 5.15.1'
 gem 'dotenv-rails'
 gem 'httparty'
 gem 'time_ago_in_words'
+
+# Auto Complete Gems
 gem 'rails3-jquery-autocomplete'
+gem 'rails-autocomplete'

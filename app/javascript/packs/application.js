@@ -16,3 +16,8 @@ require('@autocomplete-rails');
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import 'stylesheets/application';
+
+//= require jquery3
+//= require jquery_ujs
+//= require jquery-ui/widgets/autocomplete
+//= require autocomplete-rails
