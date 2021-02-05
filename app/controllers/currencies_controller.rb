@@ -27,6 +27,6 @@ class CurrenciesController < ApplicationController
     quantity = 200
     @data = Currency.get_all_data(quantity)
     Currency.update_data(quantity)
-    redirect_to currencies_path
+    redirect_back(fallback_location: root_path)
   end
 end
