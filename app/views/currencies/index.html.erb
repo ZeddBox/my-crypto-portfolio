@@ -1,8 +1,6 @@
 <div class="max-w-7xl mx-auto mt-16 text-center">
-  <h1 class="mb-4 text-4xl font-black ">Table of cryptocurrencies</h1>
-  <%= button_to 'Price Update', crypto_update_path, method: :post, class: "bg-green-400 hover:bg-green-500 text-gray-200 font-bold py-2 px-4 rounded inline-flex items-center" %>
-
-
+  <h1 class="mb-4 text-4xl font-black dark:text-gray-100">Table of cryptocurrencies</h1>
+  
   <div class="flex flex-col">
     <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -28,7 +26,7 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <% @currencies.order('rank ASC').each do |crypto| %>
+              <% @currencies.order('rank ASC, portfolio_value ASC').each do |crypto| %>
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
@@ -46,15 +44,27 @@
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900"><%= number_to_currency(crypto.price.round(4)) %></div>
+                    <div class="text-sm text-gray-900"><%= number_to_currency(crypto.price.round(4), :precision => 4) %></div>
                   </td>
                 <% if user_signed_in? %>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900"><%= number_with_delimiter(@current_user.portfolio.crypto_amount(crypto.name).round(3), :delimiter => ',')  %></div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap"> 
-                    <div class="text-sm text-gray-900"><%= number_to_currency(@current_user.portfolio.crypto_total_price(crypto.name).round(4)) %></div>
-                  </td>
+                  <% if @current_user.portfolio.crypto_amount(crypto.name) == 0 %>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-900"> - </div>
+                    </td>
+                  <% else %>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-900"><%= number_with_delimiter(@current_user.portfolio.crypto_amount(crypto.name).round(3), :precision => 4, :delimiter => ',')  %></div>
+                    </td>
+                  <% end %>
+                  <% if @current_user.portfolio.crypto_total_price(crypto.name) == 0 %>
+                    <td class="px-6 py-4 whitespace-nowrap"> 
+                      <div class="text-sm text-gray-900"> - </div>
+                    </td>
+                  <% else %>
+                    <td class="px-6 py-4 whitespace-nowrap"> 
+                      <div class="text-sm text-gray-900"><%= number_to_currency(@current_user.portfolio.crypto_total_price(crypto.name).round(4), :precision => 4) %></div>
+                    </td>
+                  <% end %>
                 <% end %>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <%= crypto.updated_at.strftime('%H:%M:%S le %d.%m.%y')  %>
