@@ -1,5 +1,5 @@
-<div class="mt-10py-4 pl-3  sm:mt-0">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
+<div class="mt-10py-4 pl-3 sm:mt-0 form-div">
+  <div class="md:grid md:gap-6 mx-24">
     <div class="mt-5 md:mt-0 md:col-span-2">
       <%= form_tag url_for(action: 'create'), method: "post" do %>
         <div class="shadow overflow-hidden sm:rounded-md">
@@ -10,30 +10,30 @@
 
                 <div class="col-span-6 sm:col-span-3">
                   <%= label_tag 'cryptocurrency', "Cryptocurrency", class: "block text-sm font-medium text-gray-700" %>
-                  <%= select_tag "crypto", options_from_collection_for_select(@currencies.order('name ASC'), "id", "name"), include_blank: "Search..", class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                  <%= select_tag "crypto", options_from_collection_for_select(@currencies.order('name ASC'), "id", "name"), include_blank: "Search..", class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md" %>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                   <%= label_tag 'amount', "Amount", class: "block text-sm font-medium text-gray-700" %>
-                  <%= text_field_tag 'number', nil, placeholder: "0.00", class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                  <%= text_field_tag 'number', nil, placeholder: "0.00", class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md" %>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                   <%= label_tag 'buying_price', "Buying Price", class: "block text-sm font-medium text-gray-700" %>
-                  <%= text_field_tag 'price', nil, placeholder: "0.00", class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                  <%= text_field_tag 'price', nil, placeholder: "0.00", class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md" %>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                   <%= label_tag 'purchase_date', "Purchase Date", class: "block text-sm font-medium text-gray-700" %>
-                  <%= date_field_tag :purchasedate, {:start_year => Time.now.year - 14, :end_year => 1900, :prompt => true, :order => [:day, :month, :year]}, class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                  <%= date_field_tag :purchasedate, {:start_year => Time.now.year - 14, :end_year => 1900, :prompt => true, :order => [:day, :month, :year]}, class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md" %>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                   <%= label_tag 'purchase_time', "Purchase Hour", class: "block text-sm font-medium text-gray-700" %>
-                  <%= time_field_tag :purchase_time, "12:00", class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                  <%= time_field_tag :purchase_time, "12:00", class:"mt-1 py-4 pl-3 focus:ring-indigo-500 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md" %>
                 </div>
 
-                <%= button_tag(type: 'submit', :class => 'btn btn-primary btn-arrow create-btn', id: 'validForm') do %>
+                <%= button_tag(type: 'submit', :class => 'btn btn-primary btn-arrow create-btn bg-green-300 hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50', id: 'validForm') do %>
                   <span>Créer</span>
                 <% end %>
               </div>

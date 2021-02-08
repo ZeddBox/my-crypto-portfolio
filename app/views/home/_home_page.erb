@@ -1,7 +1,7 @@
 <div class="max-w-7xl mx-auto mt-16 text-center">
-  <h1 class="mb-4 text-5xl font-black">Your cryptocurrencies traces and holding</h1>
-  <h2 class="mb-4 text-3xl font-bold text-indigo-600">Your portfolio total value : <%= number_to_currency(current_user.portfolio.total.round(4)) %> </h2>
-  <h3 class="mb-4 text-2xl font-bold text-indigo-600">Your total invested : <%= number_to_currency(current_user.portfolio.total_invested.round(4)) %> </h3>
+  <h1 class="mb-4 text-5xl font-black dark:text-gray-100">Your cryptocurrencies traces and holding</h1>
+  <h2 class="mb-4 text-3xl font-bold text-indigo-600 dark:text-indigo-300">Your portfolio total value : <%= number_to_currency(current_user.portfolio.total.round(4)) %> </h2>
+  <h3 class="mb-4 text-2xl font-bold text-indigo-600 dark:text-indigo-300">Your total invested : <%= number_to_currency(current_user.portfolio.total_invested.round(4)) %> </h3>
 
   <%= link_to new_purchase_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" do %>
     <i class="fa fa-plus mr-2 my-2"></i><span> Add a purchase</span>
