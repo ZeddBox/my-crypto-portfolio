@@ -47,15 +47,6 @@
 
   <hr class="mt-6 mb-3 border" />
 
-  <h3 class="mb-4 text-xl font-bold heading">Toggle Dark Mode</h3>
-
-  <label class="switch">
-    <input id="checkbox" type="checkbox" name="checkbox" />
-    <span class="slider round"></span>
-  </label>
-
-  <hr class="mt-6 mb-3 border" />
-
   <h3 class="mb-4 text-xl font-bold heading">Cancel my account</h3>
 
   <div class="flex items-center justify-between">
@@ -71,22 +62,44 @@
 <%= render 'devise/shared/form_wrap' %>
 
 <script>
-var checkbox = document.querySelector('input[name=checkbox]');
-var html = document.querySelector('.html');
+// var themeToggler = document.querySelector('input[name=checkbox]');
+// const currentTheme = localStorage.getItem("theme");
+// const pageTheme = document.querySelector('.html');
 
-if (html.classList.contains("dark")) {
-  checkbox.checked = true;
-};
+// let isDark = true
 
-checkbox.addEventListener('change', function () {
-  if (this.checked) {
-    html.classList.add('dark');
-    console.log('Checked');
-  } else {
-    html.classList.remove('dark');
-    console.log('Not Checked');
-  }
-});
+// if (pageTheme.classList.contains("dark")) {
+//   themeToggler.checked = true;
+// };
+
+// if (currentTheme == "dark") {
+//   pageTheme.classList.add("dark");
+// }
+
+// function themeMode() {
+//     isDark = !isDark;
+//     isDark ? themeToggler.checked = true : themeToggler.checked = false;
+//     pageTheme.classList.toggle("dark");
+
+//     let theme = "light";
+//     if (pageTheme.classList.contains("dark")) {
+//       theme = "dark";
+//     }
+//     localStorage.setItem("theme", theme);
+// }
+
+// themeToggler.addEventListener("click", themeMode)
+
+
+// checkbox.addEventListener('change', function () {
+//   if (this.checked) {
+//     html.classList.add('dark');
+//     console.log('Checked');
+//   } else {
+//     html.classList.remove('dark');
+//     console.log('Not Checked');
+//   }
+// });
 
 </script>
 
