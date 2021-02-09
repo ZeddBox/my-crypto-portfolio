@@ -1,9 +1,9 @@
 window.onload = function () {
-  const themeToggler = document.querySelector('#theme-toggler');
-  const currentTheme = localStorage.getItem('theme');
-  const pageTheme = document.querySelector('.html');
+  var themeToggler = document.querySelector('#theme-toggler');
+  var currentTheme = localStorage.getItem('theme');
+  var pageTheme = document.querySelector('.html');
 
-  let isDark = true;
+  let isDark = false;
 
   // if (currentTheme == 'dark') {
   //   pageTheme.classList.add('dark');
