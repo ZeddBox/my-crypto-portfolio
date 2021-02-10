@@ -1,55 +1,164 @@
-<div class="mx-auto max-w-7xl flex w-8/12 my-8 flex items-stretch">
+<div class="mx-auto max-w-7xl flex w-6/12 my-8 flex items-stretch">
   <img class="img-thumbnail" src="<%= @currency.logo %>">
-  <h2 class="ml-6 text-4xl font-black self-center"><%= @currency.name %></h2>
+  <h2 class="ml-6 text-4xl font-black self-center dark:text-gray-100 transition duration-500"><%= @currency.name %></h2>
 </div>
 
-<hr>
-
-<div class="mx-auto max-w-7xl flex w-8/12 mt-12">
-  <table class="shadow-lg bg-white">
-    <thead>
-      <tr>
-        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Name</th>
-        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Symbol</th>
-        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Max Supply</th>
-        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Price ($ USD)</th>
-        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Last Update</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="border px-2 py-4"><%= @currency.name %></td>
-        <td class="border px-2 py-4"><%= @currency.currency_symbol %></td>
-        <td class="border px-2 py-4"><%= @currency.max_supply %></td>
-        <td class="border px-2 py-4"><%= @currency.price.round(4) %></td>
-        <td class="border px-2 py-4"><%= @currency.updated_at.strftime('%H:%M:%S le %d.%m.%y') %></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="mx-auto max-w-8xl flex w-8/12">
+  <div class="flex flex-col">
+    <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50 dark:bg-gray-700 dark:text-gray-100 transition duration-500">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Crypto
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Max Supply
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Market Cap
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Price (USD)
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Last Update
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                      <img class="h-10 w-10 rounded-full" src="<%= @currency.logo%>" alt="">
+                    </div>
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-blue-600">
+                        <a href="<%= currency_path(@currency.slug) %>"><%= @currency.name %></a>
+                      </div>
+                      <div class="text-sm text-gray-500 text-left">
+                        <%= @currency.currency_symbol %>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                  <div class="text-sm text-gray-900"><%= number_with_delimiter(@currency.max_supply, :delimiter => ',', :precision => 3) %></div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                  <div class="text-sm text-gray-900"><%= number_with_delimiter(@currency.market_cap, :delimiter => ',', :precision => 3) %></div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                  <div class="text-sm text-gray-900"><%= number_to_currency(@currency.price.round(4), :precision => 4)  %></div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500"> 
+                  <div class="text-sm text-gray-900"><%= @currency.updated_at.strftime('%H:%M:%S le %d.%m.%y') %>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<hr>
 
 <div class="mx-auto max-w-7xl flex w-8/12 my-6">
-  <h2 class="mb-4 text-2xl font-black">My Portfolio</h2>
+  <h2 class="mb-4 text-2xl font-black dark:text-gray-100 transition duration-500">My Portfolio</h2>
 </div>
 
 <div class="mx-auto max-w-7xl flex w-8/12">
+  <div class="flex flex-col">
+    <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50 dark:bg-gray-700 dark:text-gray-100 transition duration-500">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Amount
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Total Value (USD)
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  %
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                  <div class="text-sm text-gray-900"><%= number_with_delimiter(@amount_purchased, :delimiter => ',', :precision => 3) %></div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                  <div class="text-sm text-gray-900"><%= number_to_currency(@amount_purchased * @currency.price.round(4), :precision => 4)  %></div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                  <div class="text-sm text-gray-900"><%= current_user.portfolio.crypto_percentage(@currency.name).round(2) %></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <table class="shadow-lg bg-white">
-    <thead>
-      <tr>
-        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">Qty</th>
-        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">USD Value</th>
-        <th class="bg-blue-100 border text-left px-2 py-4"scope="col">%</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="border px-2 py-4"><%= @amount_purchased %></td>
-          <td class="border px-2 py-4"><%= @amount_purchased * @currency.price.round(4) %></td>
-            <td class="border px-2 py-4"><%= current_user.portfolio.crypto_percentage(@currency.name).round(2) %> %</td>
-          </tr>
-    </tbody>
-  </table>
+<div class="mx-auto max-w-7xl flex w-8/12 my-6">
+  <h2 class="mb-4 text-2xl font-black dark:text-gray-100 transition duration-500">Last purchases</h2>
+</div>
+
+<div class="mx-auto max-w-7xl flex w-8/12">
+  <div class="flex flex-col">
+    <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50 dark:bg-gray-700 dark:text-gray-100 transition duration-500">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Amount
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Unit Price
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Purchase Total
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider transition duration-500">
+                  Date
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <% @purchases.order('purchasedate').each do |purchase| %>
+                <% if purchase.crypto == @currency.name %>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                    <div class="text-sm text-gray-900"><%= number_with_delimiter(purchase.number, :delimiter => ',', :precision => 3) %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                    <div class="text-sm text-gray-900"><%= number_to_currency(purchase.price, :precision => 4)  %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                    <div class="text-sm text-gray-900"><%= number_to_currency(purchase.total, :precision => 4)  %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                    <div class="text-sm text-gray-900"><%= purchase.purchasedate.strftime('%d.%m.%y at %H:%M:%S') %></div>
+                  </td>
+                </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

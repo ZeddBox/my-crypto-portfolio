@@ -24,7 +24,7 @@ class CurrenciesController < ApplicationController
   end
 
   def update
-    quantity = 400
+    quantity = 300
     @data = Currency.get_all_data(quantity)
     Currency.update_data(quantity)
     redirect_back(fallback_location: root_path)

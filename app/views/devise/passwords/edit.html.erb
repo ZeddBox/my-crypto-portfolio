@@ -1,5 +1,5 @@
 <% content_for :devise_form do %>
-  <h2 class="pt-4 mb-8 text-4xl font-bold heading">Change your password</h2>
+  <h2 class="pt-4 mb-8 text-4xl font-bold heading dark:text-gray-100 transition duration-500">Change your password</h2>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -7,17 +7,17 @@
 
     <div class="input-group">
       <div class="flex">
-        <%= f.label :password, "New password", class:"label" %>
+        <%= f.label :password, "New password", class:"label dark:text-gray-100 transition duration-500" %>
         <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em class="label dark:text-gray-100 transition duration-500">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
       </div>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input" %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input dark:bg-gray-200 transition duration-500" %>
     </div>
 
     <div class="input-group">
-      <%= f.label :password_confirmation, "Confirm new password", class: "label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "input" %>
+      <%= f.label :password_confirmation, "Confirm new password", class: "label dark:text-gray-100 transition duration-500" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "input dark:bg-gray-200 transition duration-500" %>
     </div>
 
     <div class="input-group">

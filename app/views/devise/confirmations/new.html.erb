@@ -1,13 +1,13 @@
 <% content_for :devise_form do %>
 
-  <h2 class="pt-4 mb-8 text-4xl font-bold heading">Resend confirmation instructions</h2>
+  <h2 class="pt-4 mb-8 text-4xl font-bold heading dark:text-gray-100 transition duration-500">Resend confirmation instructions</h2>
 
   <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="input-group">
-      <%= f.label :email, class: "label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "input" %>
+      <%= f.label :email, class: "label dark:text-gray-100 transition duration-500" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "input dark:bg-gray-200 transition duration-500" %>
     </div>
 
     <div class="input-group">
