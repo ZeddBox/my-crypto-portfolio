@@ -8,9 +8,16 @@ class Currency < ApplicationRecord
     }
     response = HTTParty.get(url,:headers => headers).parsed_response
   end
-
+  
+  # Functions for cryptocurrencies prices 
   def self.get_all_data(quantity)
     call = self.call("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=#{quantity}&convert=USD")
+    data = call["data"]
+    return data
+  end
+
+  def self.get_price
+    call = self.call("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/historical")
     data = call["data"]
     return data
   end
@@ -55,5 +62,11 @@ class Currency < ApplicationRecord
         ])
       end
     end
+  end
+
+  # Functions for cryptocurrencies graphs
+  def self.data_graph(cryptocurrency)
+    data = self.call("https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=#{cryptocurrency}&market=USD&apikey=#{ENV['ALPHAVANTAGE_KEY']}")
+    return data
   end
 end

@@ -67,3 +67,8 @@ gem 'time_ago_in_words'
 # Auto Complete Gems
 gem 'rails3-jquery-autocomplete'
 gem 'rails-autocomplete'
+
+# ChartJS
+gem "chartkick"
+gem 'groupdate'
+gem 'chartjs-ror'

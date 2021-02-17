@@ -72,6 +72,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    chartjs-ror (3.6.4)
+      rails (>= 3.1)
+    chartkick (3.4.2)
     childprocess (3.0.0)
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
@@ -96,6 +99,8 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (5.2.2)
+      activesupport (>= 5)
     httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -247,11 +252,14 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  chartjs-ror
+  chartkick
   devise (~> 4.7, >= 4.7.3)
   dotenv-rails
   font-awesome-rails
   font-awesome-sass (~> 5.15.1)
   friendly_id (~> 5.4, >= 5.4.1)
+  groupdate
   httparty
   jbuilder (~> 2.7)
   listen (~> 3.2)

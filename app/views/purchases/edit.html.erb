@@ -1,0 +1,44 @@
+<div class="mt-10py-4 pl-3 sm:mt-0 form-div">
+  <div class="md:grid md:gap-6 mx-24">
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <%= form_with(model: @purchase, local: true) do |form| %>
+      <div class="shadow overflow-hidden sm:rounded-md">
+        <div class="px-4 py-5 bg-gray-50 dark:bg-gray-700 dark:text-green-800 transition duration-500 sm:p-6">
+          <div class="grid grid-cols-6 gap-6">
+    
+            <div class="col-span-6 sm:col-span-3">
+              <%= form.label :cryptocurrency, "Cryptocurrency", class: "block text-sm font-medium text-gray-700 dark:text-gray-100 border-gray-400 transition duration-500 " %>
+              <%= form.collection_select :crypto, @currencies.order('name ASC'), "id", "name", {selected: @crypto_id}, {class: "mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-smrounded-md dark:text-gray-700 dark:bg-gray-200 rounded-md transition duration-500"} %>
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <%= form.label :amount, "Cryptocurrency", class: "block text-sm font-medium text-gray-700 dark:text-gray-100 border-gray-400 transition duration-500" %>
+              <%= form.text_field :number,  class: "mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md dark:bg-gray-200 dark:text-gray-700 transition duration-500", :value => @purchase.number %>
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <%= form.label :buying_price, "Buying Price", class: "block text-sm font-medium text-gray-700 dark:text-gray-100 border-gray-400 transition duration-500" %>
+              <%= form.text_field :price,  class: "mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md dark:bg-gray-200 dark:text-gray-700 transition duration-500", :value => @purchase.price %>
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <%= form.label :purchase_date, "Purchase Date", class: "block text-sm font-medium text-gray-700 dark:text-gray-100 border-gray-400 transition duration-500" %>
+              <%= form.date_field :purchasedate, class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md dark:text-gray-700 dark:bg-gray-200 transition duration-500", :value => @purchase.purchasedate.strftime('%Y-%m-%d')%>
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <%= form.label :purchase_time, "Purchase Time", class: "block text-sm font-medium text-gray-700 dark:text-gray-100 border-gray-400 transition duration-500" %>
+              <%= form.time_field :purchase_time, class:"mt-1 py-4 pl-3 focus:outline-none focus:ring-3 focus:ring-blue-600 focus:border-transparent block w-full shadow-sm sm:text-sm border-gray-400 rounded-md dark:text-gray-700 dark:bg-gray-200 transition duration-500", :value => @purchase.purchasedate.strftime('%H:%M') %>
+            </div>
+
+
+            <%= button_tag(type: 'submit', :class => 'btn btn-primary btn-arrow create-btn bg-green-300 hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 mt-6 py-3 pl-4 ', id: 'validForm') do %>
+              <span class="white-text pl-5 pr-5">Modify</span>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
