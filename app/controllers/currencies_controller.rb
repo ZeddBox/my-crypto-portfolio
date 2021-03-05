@@ -56,6 +56,10 @@ class CurrenciesController < ApplicationController
       end
     end
 
+    if @data_for_graph['Time Series (Digital Currency Daily)'] != nil
+      @price_evolution_24hours = ((@data_for_graph['Time Series (Digital Currency Daily)'][DateTime.now.strftime('%Y-%m-%d')]['2a. high (USD)'].to_f - @data_for_graph['Time Series (Digital Currency Daily)'][1.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)'].to_f) / @data_for_graph['Time Series (Digital Currency Daily)'][1.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)'].to_f) * 100
+    end
+
   end
 
   def update
