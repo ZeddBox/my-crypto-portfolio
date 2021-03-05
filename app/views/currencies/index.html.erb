@@ -65,13 +65,14 @@
                       <div class="text-sm text-gray-900"><%= number_to_currency(@current_user.portfolio.crypto_total_price(crypto.name).round(4), :precision => 4) %></div>
                     </td>
                   <% end %>
+                <% else %>
+                  <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                    <div class="text-sm text-gray-900"> - </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
+                    <div class="text-sm text-gray-900"> - </div>
+                  </td>
                 <% end %>
-                  <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
-                    <div class="text-sm text-gray-900"> - </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
-                    <div class="text-sm text-gray-900"> - </div>
-                  </td>
                   <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-200 transition duration-500">
                     <%= crypto.updated_at.strftime('%H:%M:%S le %d.%m.%y')  %>
                   </td>
