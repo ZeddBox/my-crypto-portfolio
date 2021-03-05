@@ -18,18 +18,18 @@ class CurrenciesController < ApplicationController
     @data_for_graph = Currency.data_graph(@symbol)
     
     if @data_for_graph['Time Series (Digital Currency Daily)'] != nil
-    @data_today = @data_for_graph['Time Series (Digital Currency Daily)'][DateTime.now.strftime('%Y-%m-%e')]['2a. high (USD)']
-    @data_1_day = @data_for_graph['Time Series (Digital Currency Daily)'][1.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)']
-    @data_2_day = @data_for_graph['Time Series (Digital Currency Daily)'][2.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)']
-    @data_3_day = @data_for_graph['Time Series (Digital Currency Daily)'][3.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)']
-    @data_4_day = @data_for_graph['Time Series (Digital Currency Daily)'][4.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)']
-    @data_5_day = @data_for_graph['Time Series (Digital Currency Daily)'][5.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)']
-    @data_6_day = @data_for_graph['Time Series (Digital Currency Daily)'][6.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)']
+    @data_today = @data_for_graph['Time Series (Digital Currency Daily)'][DateTime.now.strftime('%Y-%m-%d')]['2a. high (USD)']
+    @data_1_day = @data_for_graph['Time Series (Digital Currency Daily)'][1.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)']
+    @data_2_day = @data_for_graph['Time Series (Digital Currency Daily)'][2.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)']
+    @data_3_day = @data_for_graph['Time Series (Digital Currency Daily)'][3.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)']
+    @data_4_day = @data_for_graph['Time Series (Digital Currency Daily)'][4.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)']
+    @data_5_day = @data_for_graph['Time Series (Digital Currency Daily)'][5.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)']
+    @data_6_day = @data_for_graph['Time Series (Digital Currency Daily)'][6.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)']
     end
 
     if @data_for_graph['Time Series (Digital Currency Daily)'] != nil
       @data = {
-        labels: [6.day.ago.strftime('%Y-%m-%e'),5.day.ago.strftime('%Y-%m-%e'),4.day.ago.strftime('%Y-%m-%e'),3.day.ago.strftime('%Y-%m-%e'),2.day.ago.strftime('%Y-%m-%e'),1.day.ago.strftime('%Y-%m-%e'),DateTime.now.strftime('%Y-%m-%e')],
+        labels: [6.day.ago.strftime('%Y-%m-%d'),5.day.ago.strftime('%Y-%m-%d'),4.day.ago.strftime('%Y-%m-%d'),3.day.ago.strftime('%Y-%m-%d'),2.day.ago.strftime('%Y-%m-%d'),1.day.ago.strftime('%Y-%m-%d'),DateTime.now.strftime('%Y-%m-%d')],
         datasets: [
           {
               label: "USD Price",
@@ -37,7 +37,7 @@ class CurrenciesController < ApplicationController
               pointBorderWidth: "10", 
               pointHoverBorderWidth: "15",
               borderColor: "rgba(50, 105, 235, 1)",
-              data: [@data_for_graph['Time Series (Digital Currency Daily)'][6.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][5.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][4.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][3.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][2.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][1.day.ago.strftime('%Y-%m-%e')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][DateTime.now.strftime('%Y-%m-%e')]['2a. high (USD)']]
+              data: [@data_for_graph['Time Series (Digital Currency Daily)'][6.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][5.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][4.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][3.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][2.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][1.day.ago.strftime('%Y-%m-%d')]['2a. high (USD)'], @data_for_graph['Time Series (Digital Currency Daily)'][DateTime.now.strftime('%Y-%m-%d')]['2a. high (USD)']]
           },
         ]
       }
